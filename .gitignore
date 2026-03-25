@@ -1,0 +1,12 @@
+node_modules/
+package-lock.json
+dist/
+out/
+.env
+.env.*
+*.key
+*.pem
+.DS_Store
+Thumbs.db
+config.json
+PROJECT.md

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>VoidClippy</title>
+  <link rel="stylesheet" href="../node_modules/98.css/dist/98.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Chat Window (98.css styled) -->
+    <div id="chat-window" class="window" style="display: none;">
+      <div class="title-bar">
+        <div class="title-bar-text">Clippy Assistant</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" id="btn-minimize-chat"></button>
+          <button aria-label="Close" id="btn-close-chat"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div id="chat-messages"></div>
+        <div id="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Ask Clippy something..." />
+          <button id="btn-send">Ask</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speech Bubble -->
+    <div id="speech-bubble" style="display: none;">
+      <div id="speech-text"></div>
+      <div class="bubble-arrow"></div>
+    </div>
+
+    <!-- Clippy Character -->
+    <div id="clippy-container">
+      <div id="clippy" class="idle">
+        <img src="../assets/clippy.png" id="clippy-img" alt="Clippy" draggable="false" />
+        <div id="thinking-dots" style="display: none;">
+          <span>.</span><span>.</span><span>.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right-click context menu -->
+    <div id="context-menu" class="window" style="display: none; position: absolute;">
+      <div class="window-body" style="padding: 2px; margin: 0;">
+        <button class="ctx-item" id="ctx-clear">Clear Chat</button>
+        <button class="ctx-item" id="ctx-sound">Toggle Sound</button>
+        <button class="ctx-item" id="ctx-ontop">Always on Top</button>
+        <hr style="margin: 2px 0;">
+        <button class="ctx-item" id="ctx-quit">Quit</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="clippy.js"></script>
+  <script src="api.js"></script>
+  <script src="chat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

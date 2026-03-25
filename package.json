@@ -1,0 +1,16 @@
+﻿{
+  "name": "openclippy",
+  "version": "1.0.0",
+  "description": "OpenClippy - A floating Clippy desktop assistant powered by OpenClaw",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0"
+  },
+  "dependencies": {
+    "98.css": "^0.1.18"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "apiUrl": "http://localhost:18789/v1/chat/completions",
+  "token": "YOUR_OPENCLAW_TOKEN_HERE",
+  "model": "anthropic/claude-opus-4-6"
+}

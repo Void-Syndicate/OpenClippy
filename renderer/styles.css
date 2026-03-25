@@ -1,0 +1,240 @@
+﻿/* Global */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: transparent !important; }
+html, body {
+  width: 100%; height: 100%;
+  background: transparent !important;
+  background-color: transparent !important;
+  overflow: hidden;
+  font-family: "MS Sans Serif", "Microsoft Sans Serif", Arial, sans-serif;
+  user-select: none;
+}
+
+#app-container {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8px;
+  position: relative;
+}
+
+/* ===== CLIPPY ===== */
+#clippy-container {
+  width: 120px; height: 120px;
+  cursor: grab;
+  position: relative;
+  flex-shrink: 0;
+  align-self: flex-end;
+  z-index: 100;
+}
+#clippy-container:active { cursor: grabbing; }
+
+#clippy {
+  width: 120px; height: 120px;
+  position: relative;
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  transition: transform 0.2s;
+}
+#clippy:hover { transform: scale(1.05); }
+
+#clippy-img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Idle animation */
+#clippy.idle { animation: clippy-idle 3s ease-in-out infinite; }
+@keyframes clippy-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Thinking */
+#clippy.thinking { animation: clippy-think 0.5s ease-in-out infinite; }
+@keyframes clippy-think {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* Greeting / wave */
+#clippy.greeting { animation: clippy-wave 0.4s ease-in-out 3; }
+@keyframes clippy-wave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-8deg); }
+}
+
+/* Talking */
+#clippy.talking { animation: clippy-talk 0.6s ease-in-out infinite; }
+@keyframes clippy-talk {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Tap animation */
+#clippy.tapping {
+  animation: tap 0.15s ease-in-out 4 alternate;
+}
+@keyframes tap {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(5px); }
+}
+
+/* Thinking dots */
+#thinking-dots {
+  position: absolute;
+  bottom: -5px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px; font-weight: bold; color: #666;
+}
+#thinking-dots span {
+  animation: dot-bounce 1.4s infinite;
+  display: inline-block;
+}
+#thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+#thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}
+
+/* ===== SPEECH BUBBLE ===== */
+#speech-bubble {
+  background: #FFFFCC;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 10px 14px;
+  max-width: 340px;
+  margin-bottom: 8px;
+  position: relative;
+  align-self: flex-end;
+  font-size: 12px;
+  line-height: 1.4;
+  box-shadow: 2px 2px 0 #888;
+  z-index: 90;
+  animation: bubble-in 0.2s ease-out;
+}
+@keyframes bubble-in {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.bubble-arrow {
+  position: absolute;
+  bottom: -10px; right: 30px;
+  width: 0; height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #000;
+}
+.bubble-arrow::after {
+  content: "";
+  position: absolute;
+  top: -12px; left: -8px;
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #FFFFCC;
+}
+
+/* ===== CHAT WINDOW ===== */
+#chat-window {
+  width: 100%;
+  max-height: 400px;
+  margin-bottom: 8px;
+  flex-shrink: 1;
+  display: flex;
+  flex-direction: column;
+  z-index: 80;
+  animation: chat-slide-in 0.3s ease-out;
+}
+@keyframes chat-slide-in {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#chat-window .window-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 4px;
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 150px;
+  max-height: 280px;
+  background: white;
+  border: 2px inset #bbb;
+  padding: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.msg {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  max-width: 85%;
+  word-wrap: break-word;
+  clear: both;
+}
+.msg.clippy-msg {
+  background: #FFFFCC;
+  border: 1px solid #E0D980;
+  float: left;
+  border-radius: 6px 6px 6px 0;
+}
+.msg.user-msg {
+  background: #fff;
+  border: 1px solid #ccc;
+  float: right;
+  border-radius: 6px 6px 0 6px;
+}
+
+#chat-input-area {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+#chat-input {
+  flex: 1;
+  font-size: 12px;
+}
+#btn-send {
+  min-width: 50px;
+  font-size: 12px;
+}
+
+/* ===== CONTEXT MENU ===== */
+#context-menu {
+  z-index: 200;
+  min-width: 140px;
+}
+.ctx-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.ctx-item:hover {
+  background: #000080;
+  color: white;
+}
+
+/* Scrollbar 98-style */
+#chat-messages::-webkit-scrollbar { width: 16px; }
+#chat-messages::-webkit-scrollbar-track { background: #c0c0c0; }
+#chat-messages::-webkit-scrollbar-thumb {
+  background: #dfdfdf;
+  border: 2px outset #dfdfdf;
+}
