@@ -1,6 +1,10 @@
-# OpenClippy 📎
+<p align="center">
+  <img src="assets/clippy.png" alt="OpenClippy" width="120">
+</p>
 
-A floating desktop Clippy assistant powered by [OpenClaw](https://github.com/openclaw/openclaw). Retro Windows 98 aesthetic meets modern AI.
+<h1 align="center">OpenClippy 📎</h1>
+
+<p align="center">A floating desktop Clippy assistant powered by <a href="https://github.com/openclaw/openclaw">OpenClaw</a>. Retro Windows 98 aesthetic meets modern AI.</p>
 
 ![Electron](https://img.shields.io/badge/Electron-28+-blue) ![License](https://img.shields.io/badge/license-MIT-green)
 
